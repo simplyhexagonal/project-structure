@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "types": ["node", "jest"],
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "lib": ["esnext", "DOM"],
+    "downlevelIteration": true
+  },
+  "exclude": ["node_modules", "dist", "tests"],
+  "include": ["src"]
+}
