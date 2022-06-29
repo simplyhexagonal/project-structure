@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+esbuild src/index.ts --log-level=error --platform=node \
+  --bundle --outfile=dist/index.js

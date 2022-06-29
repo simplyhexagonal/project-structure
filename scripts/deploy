@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+pnpm build \
+  && chmod +x ./bin/cli \
+  && npm pack \
+  && npm install -g $(ls *.tgz) \
+  && rm *.tgz
