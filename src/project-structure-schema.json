@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+
+  "definitions": {
+    "contentSources": {
+      "type": "object",
+      "properties": {
+        "sourcePath": {
+          "type": "string"
+        },
+        "sourceType": {
+          "type": "string",
+          "enum": [
+            "directory",
+            "symlink",
+            "ftp",
+            "git",
+            "s3",
+            "tar",
+            "tgz",
+            "zip",
+            "web",
+            "custom"
+          ]
+        },
+        "customHandlerPath": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "sourcePath",
+        "sourceType"
+      ]
+    },
+    "directoryDefinition": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "flags": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "customFlags": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "directories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/directoryDefinition"
+          }
+        },
+        "contentSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/contentSources"
+          }
+        }
+      },
+      "required": [
+        "name"
+      ]
+    }
+  },
+
+  "type": "object",
+
+  "properties": {
+    "directoryStructure": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/directoryDefinition"
+      }
+    }
+  }
+}

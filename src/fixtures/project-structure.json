@@ -1,0 +1,118 @@
+{
+  "$schema": "../project-structure-schema.json",
+
+  "directoryStructure": [
+    {
+      "name": "empty-dir"
+    },
+    {
+      "name": "empty-dir-must-store",
+      "flags": ["must-store"]
+    },
+    {
+      "name": "skipped-dir",
+      "flags": ["must-skip", "must-store"],
+      "directories": [
+        {
+          "name": "skipped-dir-1"
+        },
+        {
+          "name": "skipped-dir-2",
+          "flags": ["must-store"]
+        }
+      ]
+    },
+    {
+      "name": "optional-dir",
+      "flags": ["is-optional"]
+    },
+    {
+      "name": "sensitive-dir",
+      "flags": ["is-sensitive"]
+    },
+    {
+      "name": "content-dir",
+      "flags": ["must-store"],
+      "directories": [
+        {
+          "name": "sub-empty-dir"
+        },
+        {
+          "name": "content-from-dir",
+          "contentSources": [
+            {
+              "sourcePath": "/tmp/make-dir-structure",
+              "sourceType": "directory"
+            }
+          ]
+        },
+        {
+          "name": "content-symlinks-from-dir",
+          "contentSources": [
+            {
+              "sourcePath": "/tmp/make-dir-structure",
+              "sourceType": "symlink"
+            }
+          ]
+        },
+        {
+          "name": "content-from-ftp",
+          "flags": [],
+          "contentSources": [
+            {
+              "sourcePath": "ftp://ubuntu.osuosl.org/pub/elrepo/extras/el9/SRPMS",
+              "sourceType": "ftp"
+            }
+          ]
+        },
+        {
+          "name": "content-from-git",
+          "contentSources": [
+            {
+              "sourcePath": "https://github.com/dummy-repositories/hello-world.git",
+              "sourceType": "git"
+            }
+          ]
+        },
+        {
+          "name": "content-from-s3",
+          "flags": ["must-store"],
+          "contentSources": [
+            {
+              "sourcePath": "s3://static.xtld.stream/content-samples",
+              "sourceType": "s3"
+            }
+          ]
+        },
+        {
+          "name": "content-from-tar",
+          "contentSources": [
+            {
+              "sourcePath": "./content-from-s3/archive/tape-archive/text-files-and-sub-dir.tar",
+              "sourceType": "tar"
+            }
+          ]
+        },
+        {
+          "name": "content-from-tgz",
+          "flags": ["must-store"],
+          "contentSources": [
+            {
+              "sourcePath": "./content-from-s3/archive/tape-archive-gunzip/text-files-and-sub-dir.tgz",
+              "sourceType": "tgz"
+            }
+          ]
+        },
+        {
+          "name": "content-from-zip",
+          "contentSources": [
+            {
+              "sourcePath": "./content-from-s3/archive/compressed-files/document-and-video.zip",
+              "sourceType": "zip"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
