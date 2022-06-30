@@ -45,7 +45,7 @@ describe('index', () => {
     // ACT
     const result = await processDirectoryStructure(
       {
-        rootWorkingDirectory: './testfiles/empty-dir',
+        rootWorkingDirectory: './testfiles',
         directoryStructure: emptyDirStructure,
       }
     );
@@ -64,7 +64,7 @@ describe('index', () => {
     // ACT
     const result = await processDirectoryStructure(
       {
-        rootWorkingDirectory: './testfiles/content-dir/content-from-ftp',
+        rootWorkingDirectory: './testfiles/content-dir',
         directoryStructure: contentFromFTPDirStructure,
       }
     );
