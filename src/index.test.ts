@@ -9,7 +9,7 @@ import Logger from '@simplyhexagonal/logger';
 import projectStructure from './fixtures/project-structure.json';
 
 import { processDirectoryStructure } from './';
-import { DirectoryStructure } from './interfaces';
+import { DirectoryStructure, ContentSource } from './interfaces';
 
 beforeAll(() => {
   ensureDirSync('/tmp/make-dir-structure');
@@ -53,5 +53,25 @@ describe('index', () => {
     // ASSERT
     console.log(result);
     expect(result[0].success).toBe(true);
+  });
+  
+  it('creates /testfiles/content-dir/content-from-ftp and downloads its content', async () => {
+    // ARRANGE
+    const contentDirStructure = projectStructure.directoryStructure.filter((directory) => directory["name"] === "content-dir") as DirectoryStructure
+    const contentFromFTPDirStructure = contentDirStructure[0]["directories"]!.filter((subdirectory) => subdirectory["name"] === "content-from-ftp") as DirectoryStructure    
+    const contentSources = contentFromFTPDirStructure[0]["contentSources"]![0] as ContentSource
+
+    // ACT
+    const result = await processDirectoryStructure(
+      {
+        rootWorkingDirectory: './testfiles/content-dir/content-from-ftp',
+        directoryStructure: contentFromFTPDirStructure,
+      }
+    );
+      
+    // ASSERT
+    console.log(result);
+    result.map(item => expect(item.success).toBe(true));
+    expect(contentSources["sourceType"]).toBe("ftp")
   });
 });
