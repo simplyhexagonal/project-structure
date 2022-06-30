@@ -36,4 +36,22 @@ describe('index', () => {
 
     expect(true).toBe(true);
   });
+
+  it('creates a single /empty-dir inside /testfiles', async () => {
+    // ARRANGE
+    const emptyDirStructure = projectStructure.directoryStructure.filter((directory) => directory["name"] === "empty-dir") as DirectoryStructure
+    // const emptyDirStructure = projectStructure.directoryStructure.filter((directory) => directory["directories"] === undefined || directory["directories"] === []) as DirectoryStructure
+    
+    // ACT
+    const result = await processDirectoryStructure(
+      {
+        rootWorkingDirectory: './testfiles/empty-dir',
+        directoryStructure: emptyDirStructure,
+      }
+    );
+    
+    // ASSERT
+    console.log(result);
+    expect(result[0].success).toBe(true);
+  });
 });
