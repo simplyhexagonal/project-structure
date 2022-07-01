@@ -1,3 +1,4 @@
+import fs from "fs";
 import {
   ensureDirSync,
   copyFileSync,
@@ -60,6 +61,7 @@ describe('index', () => {
     const contentDirStructure = projectStructure.directoryStructure.filter((directory) => directory["name"] === "content-dir") as DirectoryStructure
     const contentFromFTPDirStructure = contentDirStructure[0]["directories"]!.filter((subdirectory) => subdirectory["name"] === "content-from-ftp") as DirectoryStructure    
     const contentSources = contentFromFTPDirStructure[0]["contentSources"]![0] as ContentSource
+    const storageDirectory = "testfiles/content-dir/content-from-ftp";
 
     // ACT
     const result = await processDirectoryStructure(
@@ -70,8 +72,12 @@ describe('index', () => {
     );
       
     // ASSERT
+    let files = fs.readdirSync(`${storageDirectory}/repodata`);
+    console.log(files);
+    expect(files.length).toBeGreaterThan(0); // Expect folder to be populated
+
     console.log(result);
     result.map(item => expect(item.success).toBe(true));
-    expect(contentSources["sourceType"]).toBe("ftp")
+    expect(contentSources["sourcePath"]).toBe("ftp://ubuntu.osuosl.org/pub/elrepo/extras/el9/SRPMS")
   });
 });
