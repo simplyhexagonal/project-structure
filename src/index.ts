@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { hideBin } from 'yargs/helpers';
-import MonoContext from '@simplyhexagonal/mono-context';import yargs from 'yargs';
+import MonoContext from '@simplyhexagonal/mono-context';
+import yargs from 'yargs';
 import Logger from '@simplyhexagonal/logger';
 
 import { commands } from './commands';

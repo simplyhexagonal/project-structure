@@ -76,7 +76,7 @@
         },
         {
           "name": "content-from-s3",
-          "flags": ["must-store"],
+          "flags": ["must-skip"],
           "contentSources": [
             {
               "sourcePath": "s3://static.xtld.stream/content-samples",
@@ -86,6 +86,7 @@
         },
         {
           "name": "content-from-tar",
+          "flags": [ "must-skip" ],
           "contentSources": [
             {
               "sourcePath": "./content-from-s3/archive/tape-archive/text-files-and-sub-dir.tar",
@@ -95,7 +96,7 @@
         },
         {
           "name": "content-from-tgz",
-          "flags": ["must-store"],
+          "flags": [ "must-skip" ],
           "contentSources": [
             {
               "sourcePath": "./content-from-s3/archive/tape-archive-gunzip/text-files-and-sub-dir.tgz",
@@ -105,6 +106,7 @@
         },
         {
           "name": "content-from-zip",
+          "flags": [ "must-skip" ],
           "contentSources": [
             {
               "sourcePath": "./content-from-s3/archive/compressed-files/document-and-video.zip",
