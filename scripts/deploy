@@ -1,6 +1,6 @@
 #! /usr/bin/env bash
 
-pnpm build \
+npm build \
   && chmod +x ./bin/cli \
   && npm pack \
   && npm install -g $(ls *.tgz) \
